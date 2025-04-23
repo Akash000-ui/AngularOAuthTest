@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id: ' YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+      client_id: '96934569111-4gg4q9mkhei39id5bvm830b6e5esq6pg.apps.googleusercontent.com',
       callback: this.handleCredentialResponse.bind(this),
     });
 
@@ -31,7 +31,13 @@ export class LoginComponent implements OnInit {
     const idToken = response.credential;
     console.log("ID Token:", idToken);
 
-    // You can now send the token to Spring Boot:
-    // this.http.post('http://localhost:8080/api/auth/google', { idToken }).subscribe(...)
+    this.http.post('http://localhost:8000/auth/google', { idToken })
+    .subscribe(res => {
+      console.log("Login success:", res);
+      // redirect or show logged-in UI
+    }, err => {
+      console.error("Login error:", err);
+    });
+
   }
 }

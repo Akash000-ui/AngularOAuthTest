@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id: '96934569111-4gg4q9mkhei39id5bvm830b6e5esq6pg.apps.googleusercontent.com',
+      client_id: 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
       callback: this.handleCredentialResponse.bind(this),
     });
 
